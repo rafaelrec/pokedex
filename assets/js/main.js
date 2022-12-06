@@ -16,9 +16,11 @@ function loadPokemonItens(offset, limit) {
                             ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
                     </ol>
                     <img 
+                    src="${pokemon.photo}" 
                         src="${pokemon.photo}" 
-                        alt="${pokemon.name}" 
-                        onclick="clickPokemon()">
+                    src="${pokemon.photo}" 
+                    onclick="clickPokemon(${pokemon.number})" 
+                    alt="${pokemon.name}">
                 </div>
             </li>
         `).join('')
@@ -30,8 +32,12 @@ var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
 
 
-function clickPokemon(pokemon) {
+function clickPokemon(pokemonNumber) {
     modal.style.display = "block";
+    console.log("Esse é o número do Pokémon:", pokemonNumber);
+    pokeApi.getOnePokemon(pokemonNumber).then((pokemon = []) => {
+        console.log(pokemon);
+    })
 }
 
 span.onclick = function() {
