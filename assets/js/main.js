@@ -37,6 +37,29 @@ function clickPokemon(pokemonNumber) {
     console.log("Esse é o número do Pokémon:", pokemonNumber);
     pokeApi.getOnePokemon(pokemonNumber).then((pokemon = []) => {
         console.log(pokemon);
+        const newHtml = `
+        <li class="pokemon ${pokemon.type}">
+            <span class="number">#${pokemon.id}></span>
+            <span class="name">${pokemon.name}</span>
+            
+            <div class="detail">
+                <ol class="abilities">
+                Habilidades: ${pokemon.abilities.map((ability) => `<li class="abilities${ability.ability.name}">${ability.ability.name}</li>`).join('')}
+                </ol>
+            </div>
+
+            <div class="detail">
+                <ol class="height">
+                Altura: ${pokemon.height} dm <br>
+                Peso: ${pokemon.weight} hg <br>
+                </ol>
+            </div>
+
+            
+        </li>
+            `;
+
+            modal.innerHTML = newHtml
     })
 }
 
